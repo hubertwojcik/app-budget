@@ -6,14 +6,13 @@ import { useTranslation } from "react-i18next";
 import theme from "utils/theme";
 import GlobalStyles from "./index.css";
 
-import { Navigation, Wrapper } from "components";
+import { Navigation, Wrapper, LoadingIndicator } from "components";
 
 function App() {
 	const { t, i18n } = useTranslation();
 	return (
-		<ThemeProvider theme={theme}>
+		<>
 			<GlobalStyles />
-
 			<Router>
 				<Navigation
 					items={[
@@ -42,15 +41,17 @@ function App() {
 					</Switch>
 				</Wrapper>
 			</Router>
-		</ThemeProvider>
+		</>
 	);
 }
 
 function RootApp() {
 	return (
-		<React.Suspense fallback="Loading...">
-			<App />
-		</React.Suspense>
+		<ThemeProvider theme={theme}>
+			<React.Suspense fallback={<LoadingIndicator />}>
+				<App />
+			</React.Suspense>
+		</ThemeProvider>
 	);
 }
 
