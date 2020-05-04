@@ -27,10 +27,16 @@ function App() {
 					]}
 					RightElement={
 						<div>
-							<Button type="inline" onClick={() => i18n.changeLanguage("pl")}>
+							<Button
+								variant="regular"
+								onClick={() => i18n.changeLanguage("pl")}
+							>
 								pl
 							</Button>
-							<Button type="inline" onClick={() => i18n.changeLanguage("en")}>
+							<Button
+								variant="regular"
+								onClick={() => i18n.changeLanguage("en")}
+							>
 								en
 							</Button>
 						</div>
