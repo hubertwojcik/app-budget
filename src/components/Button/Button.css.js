@@ -18,10 +18,12 @@ export const InlineButton = styled(RootButton)`
 		text-decoration: underline;
 	}
 `;
+
 export const RegularButton = styled(RootButton)`
-background:${({ theme, primary }) =>
-	primary ? theme.colors.pink.normal : theme.colors.gray.light};
-margin: ${({ theme }) => `${theme.spacing.xs / 2}px`}
-padding: ${({ theme }) => `${theme.spacing.xs / 2}px ${theme.spacing.xs}px`}
-border: ${({ theme }) => `2px solid ${theme.colors.pink.normal}`}
+	background: ${({ theme, primary }) =>
+		primary ? theme.colors.pink.normal : theme.colors.gray.light};
+	margin: ${({ theme }) => `${theme.spacing.xs / 2}px`};
+	padding: ${({ theme }) => `${theme.spacing.xs / 2}px ${theme.spacing.xs}px`};
+	border: ${({ theme }) => `2px solid ${theme.colors.pink.normal}`};
+	border-radius: 3px;
 `;
