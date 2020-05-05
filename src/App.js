@@ -6,14 +6,18 @@ import { useTranslation } from "react-i18next";
 
 import theme from "utils/theme";
 import GlobalStyles from "./index.css";
-import { fetchBudget } from "data/actions/budget.actions";
+import {
+	fetchBudget,
+	fetchBudgetedCategories,
+} from "data/actions/budget.actions";
 
 import { Navigation, Wrapper, LoadingIndicator, Button } from "components";
 
-function App({ budget, fetchBudget }) {
+function App({ budget, fetchBudget, fetchBudgetedCategories }) {
 	useEffect(() => {
 		fetchBudget(1);
-	}, [fetchBudget]);
+		fetchBudgetedCategories(1);
+	}, [fetchBudget, fetchBudgetedCategories]);
 
 	const { t, i18n } = useTranslation();
 	return (
@@ -69,6 +73,7 @@ const ConnectedApp = connect(
 	},
 	{
 		fetchBudget,
+		fetchBudgetedCategories,
 	}
 )(App);
 
