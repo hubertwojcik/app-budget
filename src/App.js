@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { connect } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import { useTranslation } from "react-i18next";
 
 import theme from "utils/theme";
 import GlobalStyles from "./index.css";
+import { fetchBudget } from "data/actions/budget.actions";
 
 import { Navigation, Wrapper, LoadingIndicator, Button } from "components";
 
-function App() {
+function App({ budget, fetchBudget }) {
+	useEffect(() => {
+		fetchBudget(1);
+	}, [fetchBudget]);
+
 	const { t, i18n } = useTranslation();
 	return (
 		<>
@@ -55,11 +61,22 @@ function App() {
 	);
 }
 
+const ConnectedApp = connect(
+	(state) => {
+		return {
+			budget: state.budget.budget,
+		};
+	},
+	{
+		fetchBudget,
+	}
+)(App);
+
 function RootApp() {
 	return (
 		<ThemeProvider theme={theme}>
 			<React.Suspense fallback={<LoadingIndicator />}>
-				<App />
+				<ConnectedApp />
 			</React.Suspense>
 		</ThemeProvider>
 	);
